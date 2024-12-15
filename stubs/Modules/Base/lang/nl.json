@@ -177,6 +177,7 @@
     "This password link will expire in :count minutes.": "Dit wachtwoord link verloopt in :count minuten.",
     "If the link has expired you can get a new link using the 'Forget Password' button on the login page.": "Als de link verlopen is kunt u een nieuwe link opvragen met de 'Wachtwoord Vergeten' knop op de login pagina.",
     "External link to :to": "Externe link naar :to",
+    "An URL should always start with http:// or https://": "Een URL moet altijd beginnen met http:// of https://",
 
     "EOF": "End of file"
 }

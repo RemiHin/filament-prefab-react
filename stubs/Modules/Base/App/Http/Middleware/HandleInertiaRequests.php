@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Enums\MenuEnum;
 use App\Models\MenuItem;
 use App\Settings\ContactSettings;
+use App\Settings\SocialsSettings;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -75,7 +76,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'appName' => config('app.name'),
             'contact' => app(ContactSettings::class),
-            'socials' => [], //TODO: create SocialsSettings and load it
+            'socials' => app(SocialsSettings::class),
             'menus' => $menus,
         ]);
     }
