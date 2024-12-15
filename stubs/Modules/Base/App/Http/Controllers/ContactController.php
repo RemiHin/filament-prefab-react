@@ -27,6 +27,6 @@ class ContactController extends Controller
 
         Session::flash('success');
 
-        return redirect()->back();
+        return back()->with('success', true);
     }
 }
