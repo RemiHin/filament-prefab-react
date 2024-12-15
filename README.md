@@ -6,7 +6,16 @@ Use this template to scaffold a new website
 
 1. Create a new project `laravel new project-name`
 2. clone this repository
-3. update the `composer.json` of your new project and change minimum stability to dev: `"minimum-stability": "dev",`
+3. update the `composer.json` of your new project and change minimum stability to dev: `"minimum-stability": "dev",` and add the following:
+```json
+"repositories": {
+        "filament-prefab-react": {
+            "type": "path",
+            "url": "../<path-to>/filament-prefab-react",
+            "symlink": true
+        }
+    },
+```
 4. `composer require remihin/filament-prefab-react`
 5. Install all modules:
 - `php artisan prefab:filament --module=base --force`
@@ -14,9 +23,10 @@ Use this template to scaffold a new website
 - NOTE: When updating modules after their initial rollout add `--force` to override local files. Additionally `--no-shell` can be added to prevent shell commands from being executed to speed up rolling out updates.
 6. `composer dump`
 7. `php artisan migrate`
-8. Create a user `php artisan make:filament-user` and follow the prompts
+8. `php artisan make:filament-user` to create a user follow the prompts
 9. `php artisan db:seed`
-10. `npm install && npm run dev`
+10. `php artisan svg:link` to make the icon picker work in React
+11. `npm install && npm run dev`
 
 ### How to use Seoable en Ogable
 1. add the `use Seoable`trait to the model
