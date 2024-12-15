@@ -1,0 +1,17 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+
+    # The level 8 is the highest level
+    level: 4
+
+    ignoreErrors:
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::#'
+        - '#Call to an undefined static method Illuminate\\Database\\Eloquent\\Model::visible\(\).#'
+        - '#::toSitemap\(\) should return Motivo\\Liberiser\\DataObjects\\Sitemap\\SitemapCollection but returns Illuminate\\Support\\Collection\<\(int\|string\)\, mixed>.#'
+
+    checkMissingIterableValueType: false

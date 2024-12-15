@@ -1,0 +1,57 @@
+{
+  "name": "remihin/filament-prefab-react",
+  "description": "prefab for a filament website with a react and inertia frontend",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Remi Hindriks",
+      "email": "56312208+RemiHin@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-json": "*",
+    "illuminate/filesystem": "^11.0",
+    "illuminate/support": "^11.0",
+    "illuminate/validation": "^11.0"
+  },
+  "require-dev": {
+    "deployer/deployer": "v7.0.0-rc.8",
+    "friendsofphp/php-cs-fixer": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "RemiHin\\FilamentPrefabReact\\": "src/",
+      "RemiHin\\FilamentPrefabReactStubs\\": "stubs/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "RemiHin\\FilamentPrefabReact\\FilamentPrefabReactServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "pre-commit install || true",
+      "pre-commit install --hook-type pre-push || true",
+      "pre-commit install --hook-type prepare-commit-msg || true"
+    ],
+    "cs": [
+      "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php"
+    ],
+    "cs_fix": [
+      "@cs"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
+

@@ -1,0 +1,17 @@
+/vendor
+composer.lock
+/phpunit.xml
+.phpunit.result.cache
+.php-cs-fixer.cache
+/.idea
+.DS_Store
+/public/build
+/public/hot
+/public/storage
+/public/js/filament
+/public/css/filament
+/public/css/guava
+/public/css/solution-forest
+/public/css/awcodes
+/public/js/solution-forest
+/public/js/awcodes
