@@ -1,7 +1,7 @@
 import Layout from "../../components/layouts/layout.jsx";
 import BlockModule from "../../components/blocks/block-module.jsx";
 import Pagination from "../../components/layouts/elements/pagination.jsx";
-import {useForm} from "@inertiajs/react";
+import {Head, Link, useForm} from "@inertiajs/react";
 
 export default function BlogOverview({page, blogs}) {
     const {data, setData} = useForm({
@@ -10,13 +10,14 @@ export default function BlogOverview({page, blogs}) {
 
     return (
         <Layout>
+            <Head title={page.name}/>
             <h1>{page.name}</h1>
             {page.content &&
                 <BlockModule blocks={page.content}/>
             }
             <div className={'grid grid-cols-3 gap-5'}>
                 {blogs.data.map((blog, index) => (
-                    <a href={blog.url} key={index}>
+                    <Link href={blog.url} key={index}>
                         {/*TODO: add srcSet to image using large_url, medium_url and thumbnail_url*/}
                         <img className={'rounded-xl'} src={blog.image.medium_url}/>
                         <h3>
@@ -25,7 +26,7 @@ export default function BlogOverview({page, blogs}) {
                         <p className={'truncate'}>
                             {blog.intro}
                         </p>
-                    </a>
+                    </Link>
                 ))}
 
             </div>

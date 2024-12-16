@@ -2,6 +2,7 @@ import ExternalLinkSvg from "../svg/external-link.jsx";
 import ChevronDownSvg from "../svg/chevron-down.jsx";
 import Submenu from "./submenu.jsx";
 import {useState} from "react";
+import {Link} from "@inertiajs/react";
 
 export default function MenuItem(props) {
     const {item, collapsable, title} = props;
@@ -26,7 +27,7 @@ export default function MenuItem(props) {
 
         return (
             <li className="relative" key={`${title}_${item.id}`}>
-                <a
+                <Link
                     target={item.is_internal ? `_self` : `_blank`}
                     className="flex items-center w-full py-2 border-t border-slate-200 md:border-none underline underline-offset-4 decoration-2 decoration-transparent transition duration-150 ease-in-out hover:decoration-current"
                     href={item.route}
@@ -35,30 +36,30 @@ export default function MenuItem(props) {
                     {!item.is_internal && (
                         <ExternalLinkSvg className={'h-4 w-4 ml-1'}/>
                     )}
-                </a>
+                </Link>
             </li>
         )
     }
 
     if (!item.is_internal) {
         return (
-            <a href={item.route}
-               key={`${title}_${item.id}`}
-               target={`_blank`}
-               className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-md mb-2 lg:mb-0`}>
+            <Link href={item.route}
+                  key={`${title}_${item.id}`}
+                  target={`_blank`}
+                  className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-md mb-2 lg:mb-0`}>
                 {item.title}
                 <ExternalLinkSvg className={'h-4 w-4 ml-1'}/>
-            </a>
+            </Link>
         )
     }
 
     if (item.children.length <= 0 && item.is_internal) {
         return (
-            <a href={item.route}
-               key={`${title}_${item.id}`}
-               className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-lg mb-2 lg:mb-0`}>
+            <Link href={item.route}
+                  key={`${title}_${item.id}`}
+                  className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-lg mb-2 lg:mb-0`}>
                 {item.title}
-            </a>
+            </Link>
         )
     }
 
