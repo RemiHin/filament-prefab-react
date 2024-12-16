@@ -34,6 +34,7 @@ class PrefabCommand extends Command
      */
     public array $modules = [
         'base',
+        'blog',
     ];
 
     protected ?string $module;
@@ -899,6 +900,7 @@ class PrefabCommand extends Command
     protected function executeModuleCustomCommands(string $module): void
     {
         if (!file_exists(__DIR__ . "/../../stubs/Modules/" . Str::studly($module) . "/ModuleActions.php")) {
+            dd('file not exisiu');
             return;
         }
 

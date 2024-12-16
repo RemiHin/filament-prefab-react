@@ -42,9 +42,9 @@ class PageController extends Controller
             );
         }
 
-        if(file_exists(resource_path('js/Resources/Pages/Page/Default.jsx'))) {
+        if(file_exists(resource_path('js/Pages/resources/page/default.jsx'))) {
             return Inertia::render(
-                'resources/page/Default',
+                'resources/page/default',
                 [
                     'page' => $page,
                 ]
@@ -52,9 +52,9 @@ class PageController extends Controller
         }
 
         return Inertia::render(
-            'Resources/Index',
+            'resources/index',
             [
-                'page' => $page,
+                'model' => $page,
             ]
         );
     }
