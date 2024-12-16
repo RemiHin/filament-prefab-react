@@ -2,16 +2,18 @@ import ChevronDownSvg from "../svg/chevron-down.jsx";
 import Submenu from "./submenu.jsx";
 import {useState} from "react";
 import SmartLink from "./smartlink.jsx";
+import {usePage} from "@inertiajs/react";
 
 export default function MenuItem(props) {
     const {item, collapsable, title} = props;
     const [isHovered, setIsHovered] = useState(false);
+    const {url} = usePage()
 
     if (!collapsable) {
         if (item.children.length > 0) {
             return (
                 <li key={`${title}_${item.id}`}>
-                    <span className="flex w-full py-2 border-t border-slate-200 md:border-none font-bold">
+                    <span className="flex w-full py-2 border-t border-slate-200 md:border-none">
                         {item.title}
                     </span>
 
@@ -28,8 +30,8 @@ export default function MenuItem(props) {
             <li className="relative" key={`${title}_${item.id}`}>
                 <SmartLink
                     isExternal={!item.is_internal}
-                    className="flex items-center w-full py-2 border-t border-slate-200 md:border-none underline underline-offset-4 decoration-2 decoration-transparent transition duration-150 ease-in-out hover:decoration-current"
-                    href={item.route}
+                    className={`${url === (item.menuable?.slug ? '/' + item.menuable?.slug : item.route) ? 'font-bold' : ''} flex items-center w-full py-2 border-t border-slate-200 md:border-none underline underline-offset-4 decoration-2 decoration-transparent transition duration-150 ease-in-out hover:decoration-current`}
+                    href={item.menuable?.slug ?? item.route}
                 >
                     {item.title}
                 </SmartLink>
@@ -40,10 +42,10 @@ export default function MenuItem(props) {
     if (!item.is_internal) {
         return (
             <SmartLink
-                href={item.route}
+                href={item.menuable?.slug ?? item.route}
                 key={`${title}_${item.id}`}
-                t isExternal={!item.is_internal}
-                className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-md mb-2 lg:mb-0`}>
+                isExternal={!item.is_internal}
+                className={`${item.children.length > 0 ? 'hidden' : 'flex'} ${url === (item.menuable?.slug ? '/' + item.menuable?.slug : item.route) ? 'font-bold' : ''} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-md mb-2 lg:mb-0`}>
                 {item.title}
             </SmartLink>
         )
@@ -53,9 +55,9 @@ export default function MenuItem(props) {
         return (
             <SmartLink
                 isExternal={!item.is_internal}
-                href={item.route}
+                href={item.menuable?.slug ?? item.route}
                 key={`${title}_${item.id}`}
-                className={`${item.children.length > 0 ? 'hidden' : 'flex'} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-lg mb-2 lg:mb-0`}>
+                className={`${item.children.length > 0 ? 'hidden' : 'flex'} ${url === (item.menuable?.slug ? '/' + item.menuable?.slug : item.route) ? 'font-bold' : ''} items-center px-5 py-2.5 bg-transparent text-gray-900 rounded-lg mb-2 lg:mb-0`}>
                 {item.title}
             </SmartLink>
         )
