@@ -21,7 +21,10 @@ class PageController extends Controller
             [
                 'page' => $page,
             ]
-        );
+        )
+            ->withViewData([
+                'seo' => $page->seo,
+            ]);
     }
 
     public function show(Page $page): \Inertia\Response
@@ -39,7 +42,10 @@ class PageController extends Controller
                 [
                     'page' => $page,
                 ]
-            );
+            )
+                ->withViewData([
+                    'seo' => $page->seo,
+                ]);
         }
 
         if(file_exists(resource_path('js/Pages/resources/page/default.jsx'))) {
@@ -48,7 +54,10 @@ class PageController extends Controller
                 [
                     'page' => $page,
                 ]
-            );
+            )
+                ->withViewData([
+                    'seo' => $page->seo,
+                ]);
         }
 
         return Inertia::render(
@@ -56,6 +65,9 @@ class PageController extends Controller
             [
                 'model' => $page,
             ]
-        );
+        )
+            ->withViewData([
+                'seo' => $page->seo,
+            ]);
     }
 }

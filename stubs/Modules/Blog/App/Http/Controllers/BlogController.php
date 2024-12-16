@@ -20,7 +20,10 @@ class BlogController extends Controller
                 'page' => $page,
                 'blogs' => $blogs
             ]
-        );
+        )
+            ->withViewData([
+                'seo' => $page->seo,
+            ]);
     }
 
     public function show(Blog $blog): \Inertia\Response
@@ -38,7 +41,10 @@ class BlogController extends Controller
                 [
                     'blog' => $blog,
                 ]
-            );
+            )
+                ->withViewData([
+                    'seo' => $blog->seo,
+                ]);
         }
 
         if (file_exists(resource_path('js/Pages/resources/blog/default.jsx'))) {
@@ -47,7 +53,10 @@ class BlogController extends Controller
                 [
                     'blog' => $blog,
                 ]
-            );
+            )
+                ->withViewData([
+                    'seo' => $blog->seo,
+                ]);
         }
 
         return Inertia::render(
@@ -55,6 +64,9 @@ class BlogController extends Controller
             [
                 'model' => $blog,
             ]
-        );
+        )
+            ->withViewData([
+                'seo' => $blog->seo,
+            ]);
     }
 }
