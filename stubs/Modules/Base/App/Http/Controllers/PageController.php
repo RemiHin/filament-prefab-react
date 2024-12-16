@@ -13,7 +13,7 @@ class PageController extends Controller
     {
         /** @var Page $page */
         $page = Page::query()
-            ->whereHas('label', fn (MorphOne|Builder $builder) => $builder->where('label', 'home'))
+            ->whereHas('label', fn(MorphOne|Builder $builder) => $builder->where('label', 'home'))
             ->firstOrFail();
 
         return Inertia::render(
@@ -34,11 +34,11 @@ class PageController extends Controller
 
     protected function getComponent(Page $page): \Inertia\Response
     {
-        abort_if(! $page->isVisible(), 404);
+        abort_if(!$page->isVisible(), 404);
 
         if ($page->label?->label && file_exists(resource_path('js/Pages/resources/page/') . $page->label->label . '.jsx')) {
             return Inertia::render(
-                'resources/page/'.strtolower($page->label->label),
+                'resources/page/' . strtolower($page->label->label),
                 [
                     'page' => $page,
                 ]
@@ -48,7 +48,7 @@ class PageController extends Controller
                 ]);
         }
 
-        if(file_exists(resource_path('js/Pages/resources/page/default.jsx'))) {
+        if (file_exists(resource_path('js/Pages/resources/page/default.jsx'))) {
             return Inertia::render(
                 'resources/page/default',
                 [
@@ -63,7 +63,7 @@ class PageController extends Controller
         return Inertia::render(
             'resources/index',
             [
-                'model' => $page,
+                'page' => $page,
             ]
         )
             ->withViewData([
