@@ -1,8 +1,13 @@
 import Layout from "../../components/layouts/layout.jsx";
 import BlockModule from "../../components/blocks/block-module.jsx";
 import Pagination from "../../components/layouts/elements/pagination.jsx";
+import {useForm} from "@inertiajs/react";
 
 export default function BlogOverview({page, blogs}) {
+    const {data, setData} = useForm({
+        page: blogs.current_page
+    })
+
     return (
         <Layout>
             <h1>{page.name}</h1>
@@ -24,7 +29,7 @@ export default function BlogOverview({page, blogs}) {
                 ))}
 
             </div>
-            <Pagination data={blogs}/>
+            <Pagination links={blogs.links} currentPage={blogs.currentPage} setCurrentPage={(page) => setData(page)}/>
         </Layout>
     );
 }

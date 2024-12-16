@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Label;
 use Inertia\Inertia;
-use function App\Http\Controllers\abort_if;
-use function App\Http\Controllers\request;
 
 class BlogController extends Controller
 {
@@ -15,18 +12,13 @@ class BlogController extends Controller
     {
         $page = Label::getModel('blog-overview');
 
-        $pageNumber = request()->input('page', 1);
-        $per_page = request()->input('per_page', 3);
-        $blogs = Blog::query()->visible()->published()->paginate(
-            page: $pageNumber,
-            perPage: $per_page
-        );
+        $blogs = Blog::query()->visible()->published()->paginate(3);
 
         return Inertia::render(
             'resources/page/blog-overview',
             [
                 'page' => $page,
-                'blogs' => Inertia::merge($blogs)
+                'blogs' => $blogs
             ]
         );
     }
